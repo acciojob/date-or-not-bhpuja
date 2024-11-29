@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is Date Function</title>
+  <script>
+    function isDate(input) {
+      // Check if the input is an instance of Date and is valid
+      if (input instanceof Date) {
+        return !isNaN(input.getTime());
+      }
+      
+      // Check if the input is a string that can be parsed into a valid date
+      if (typeof input === 'string') {
+        const parsedDate = new Date(input);
+        return !isNaN(parsedDate.getTime());
+      }
+
+      // Check if the input is a number (timestamp)
+      if (typeof input === 'number') {
+        const parsedDate = new Date(input);
+        return !isNaN(parsedDate.getTime());
+      }
+
+      // Return false for any other type of input
+      return false;
+    }
+
+    function checkDate() {
+      const userInput = document.getElementById('userInput').value;
+      const result = isDate(userInput);
+      document.getElementById('result').textContent = result ? 'Valid Date' : 'Invalid Date';
+    }
+  </script>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
+  <h1>Is Date Checker</h1>
+  <label for="userInput">Enter input:</label>
+  <input type="text" id="userInput" placeholder="Enter a date or text">
+  <button onclick="checkDate()">Check</button>
+  <p id="result"></p>
 </body>
-
 </html>
